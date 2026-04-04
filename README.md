@@ -1,6 +1,6 @@
 # Bunnings Warehouse Inventory Management System
 
-##Company
+## Company
 Bunnings Warehouse
 
 ## Overview
