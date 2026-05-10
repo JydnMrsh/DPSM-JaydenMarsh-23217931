@@ -4,13 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BunningsInventoryManagementSystem.Models
 {
+    public enum Role
+    {
+        ITStaff,
+        WarehouseStaff,
+        RetailStaff,
+        StoreManager
+    }
+
     internal abstract class User
     {
         public int UserID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public Role UserRole { get; set; }
+
 
         public bool Login(string username, string password)
         {
