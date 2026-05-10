@@ -29,7 +29,7 @@ namespace BunningsInventoryManagementSystem.Models
         }
 
         // Check if the stock level is below the low stock threshold and trigger an alert
-        public void checkLowStock()
+        public void CheckLowStock()
         {
             if (stockLevel <= lowStockThreshold)
             {
@@ -38,7 +38,7 @@ namespace BunningsInventoryManagementSystem.Models
         }
 
         // Add a new item to the inventory
-        public void addNewItem(int itemID, string name, double price, int stockLevel, int lowStockThreshold, bool location)
+        public void AddNewItem(int itemID, string name, double price, int stockLevel, int lowStockThreshold, bool location)
         {
             ItemID = itemID;
             Name = name;
