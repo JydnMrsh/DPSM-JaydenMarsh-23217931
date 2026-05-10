@@ -33,7 +33,7 @@ namespace BunningsInventoryManagementSystem.Models
         {
             if (stockLevel <= lowStockThreshold)
             {
-                // Trigger low stock alert
+                // Trigger low stock alert *****TODO*****
             }
         }
 

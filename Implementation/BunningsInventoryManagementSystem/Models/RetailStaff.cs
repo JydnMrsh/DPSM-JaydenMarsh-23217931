@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BunningsInventoryManagementSystem.Models
 {
-    internal class RetailStaff
+    internal class RetailStaff : User
     {
     }
 }
