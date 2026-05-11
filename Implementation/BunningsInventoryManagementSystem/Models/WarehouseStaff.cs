@@ -27,7 +27,7 @@ namespace BunningsInventoryManagementSystem.Models
         }
 
         // Warehouse staff can view order request status
-        public Status ViewOrderStatus(System system, int requestID)
+        public Status ViewOrderStatus(InventorySystem system, int requestID)
         {
             foreach (OrderRequest request in system.orderRequests) // Find the order request with the given ID
             {

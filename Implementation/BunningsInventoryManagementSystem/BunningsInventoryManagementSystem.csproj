@@ -69,6 +69,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\InventorySystem.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ITStaff.cs" />
     <Compile Include="Models\LowStockAlert.cs" />

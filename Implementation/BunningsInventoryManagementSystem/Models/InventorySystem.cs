@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,13 +11,13 @@ namespace BunningsInventoryManagementSystem.Models
     {
         public List<Item> inventory = new List<Item>(); // List of items in the inventory
         public List<OrderRequest> orderRequests = new List<OrderRequest>(); // List of order requests
+        public Action<string> Logger; // Logger action to log messages
 
         public void Demo()
         {
             AddItem("Screws", 0.10, 100, 20, false); // Add an item to inventory
+            AddOrderRequest(GetItem(1), 50); // Add an order request for the item
 
-            OrderRequest request1 = new OrderRequest(GetItem(1), 10); // Example order request
-            orderRequests.Add(request1); // Add order request to list
         }
 
         // Add a new item to the inventory
@@ -24,6 +25,15 @@ namespace BunningsInventoryManagementSystem.Models
         {
             Item newItem = new Item(name, price, stockLevel, lowStockThreshold, location);
             inventory.Add(newItem);
+            Logger?.Invoke($"Added item: {name} with ID: {newItem.ItemID}");
+        }
+
+        // Add a new order request for an item
+        public void AddOrderRequest(Item item, int amount)
+        {
+            OrderRequest newRequest = new OrderRequest(item, amount);
+            orderRequests.Add(newRequest);
+            Logger?.Invoke($"Added order request for item: {item.Name}, amount: {amount}, request ID: {newRequest.RequestID}");
         }
 
         // Get an item from the inventory by its ID

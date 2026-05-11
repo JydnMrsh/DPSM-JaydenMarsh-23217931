@@ -23,11 +23,11 @@ namespace BunningsInventoryManagementSystem.Models
         // Retail staff can view stock levels and item locations
         public int ViewStockLevel(Item item)
         {
-            return item.stockLevel;
+            return item.StockLevel;
         }
         public bool ViewItemLocation(Item item)
         {
-            return item.location;
+            return item.Location;
         }
     }
 }

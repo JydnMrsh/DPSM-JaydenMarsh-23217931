@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <TextBox x:Name="ConsoleBox" HorizontalAlignment="Center" Height="379" TextWrapping="Wrap" VerticalAlignment="Center" Width="738" IsReadOnly="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Background="#FFDDDDDD"/>
+
     </Grid>
 </Window>

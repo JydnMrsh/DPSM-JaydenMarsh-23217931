@@ -21,9 +21,20 @@ namespace BunningsInventoryManagementSystem
     /// </summary>
     public partial class MainWindow : Window
     {
+        InventorySystem inventorySystem = new InventorySystem();
+
         public MainWindow()
         {
             InitializeComponent();
+
+            inventorySystem.Logger = Log; // Set the logger action to the Log method in this class
+            inventorySystem.Demo(); // Run demo
+        }
+
+        // Log messages to the console box in the UI
+        public void Log(string message)
+        {
+            ConsoleBox.Text += message + "\n";
         }
     }
 }

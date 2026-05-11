@@ -20,8 +20,8 @@ namespace BunningsInventoryManagementSystem.Models
         {
             AlertID = alertID;
             Item = item;
-            CurrentStockLevel = item.stockLevel;
-            StockThreshold = item.lowStockThreshold;
+            CurrentStockLevel = item.StockLevel;
+            StockThreshold = item.LowStockThreshold;
             IsActive = true;
             Message = $"Low stock alert for item: {item.Name}. Stock threshold: {StockThreshold}. Current stock level: {CurrentStockLevel}.";
         }
