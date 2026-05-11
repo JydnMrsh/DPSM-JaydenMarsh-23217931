@@ -14,17 +14,17 @@ namespace BunningsInventoryManagementSystem.Models
         public double Price { get; set; }
         public int StockLevel { get; set; }
         public int LowStockThreshold { get; set; }
-        public bool Location { get; set; }
+        public bool InWarehouse { get; set; }
 
         // Contructor
-        public Item(string name, double price, int stockLevel, int lowStockThreshold, bool location)
+        public Item(string name, double price, int stockLevel, int lowStockThreshold)
         {
             ItemID = nextItemID++;
             Name = name;
             Price = price;
             StockLevel = stockLevel;
             LowStockThreshold = lowStockThreshold;
-            Location = location;
+            InWarehouse = true; // Default location is warehouse
         }
 
         // Add amount of stock to the current stock level
@@ -35,9 +35,9 @@ namespace BunningsInventoryManagementSystem.Models
         }
 
         // update items location, true for warehouse, false for retail
-        public void UpdateLocation(bool newLocation)
+        public void UpdateLocation(bool inWarehouse)
         {
-            Location = newLocation;
+            InWarehouse = inWarehouse;
         }
 
         // Check if the stock level is below the low stock threshold and trigger an alert

@@ -15,15 +15,17 @@ namespace BunningsInventoryManagementSystem.Models
 
         public void Demo()
         {
-            AddItem("Screws", 0.10, 100, 20, false); // Add an item to inventory
+            AddItem("Chocolate", 5, 100, 20); // Add an item to inventory
+            AddItem("Cereal", 10, 50, 10);
+            AddItem("Milk", 3, 30, 5);
             AddOrderRequest(GetItem(1), 50); // Add an order request for the item
 
         }
 
         // Add a new item to the inventory
-        public void AddItem(string name, double price, int stockLevel, int lowStockThreshold, bool location)
+        public void AddItem(string name, double price, int stockLevel, int lowStockThreshold)
         {
-            Item newItem = new Item(name, price, stockLevel, lowStockThreshold, location);
+            Item newItem = new Item(name, price, stockLevel, lowStockThreshold);
             inventory.Add(newItem);
             Logger?.Invoke($"Added item: {name} with ID: {newItem.ItemID}");
         }
