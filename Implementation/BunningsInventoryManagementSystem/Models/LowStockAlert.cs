@@ -8,6 +8,8 @@ namespace BunningsInventoryManagementSystem.Models
 {
     internal class LowStockAlert
     {
+        private InventorySystem inventorySystem = new InventorySystem();
+        private static int nextAlertID = 1;
         public int AlertID { get; set; }
         public Item Item { get; set; }
         public string Message { get; set; }
@@ -16,9 +18,9 @@ namespace BunningsInventoryManagementSystem.Models
         public bool IsActive { get; set; }
 
         // Create a low stock alert for a specific item
-        public LowStockAlert(int alertID, Item item)
+        public LowStockAlert(Item item)
         {
-            AlertID = alertID;
+            AlertID = nextAlertID++;
             Item = item;
             CurrentStockLevel = item.StockLevel;
             StockThreshold = item.LowStockThreshold;
@@ -28,14 +30,14 @@ namespace BunningsInventoryManagementSystem.Models
 
         public void SendAlert()
         {
-            // Send alert *****TODO*****
-            Console.WriteLine(Message);
+            // Log the alert for now, this could be extended to UI notifications. *****TODO*****
+            inventorySystem.Logger?.Invoke(Message);
         }
 
         public void DismissAlert()
         {
-            // Dismiss alert *****TODO*****
-            Console.WriteLine($"Alert for item: {Item.Name} dismissed.");
+            // Dismiss alert by taking it off the UI notifications *****TODO*****
+            inventorySystem.Logger?.Invoke($"Alert for item: {Item.Name} dismissed.");
             IsActive = false;
         }
     }

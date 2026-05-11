@@ -31,6 +31,7 @@ namespace BunningsInventoryManagementSystem.Models
         public void UpdateStockLevel(int amount)
         {
             StockLevel += amount;
+            CheckLowStock(); // Check if the stock level is below the low stock threshold after updating
         }
 
         // update items location, true for warehouse, false for retail
@@ -44,10 +45,8 @@ namespace BunningsInventoryManagementSystem.Models
         {
             if (StockLevel <= LowStockThreshold)
             {
-                // Trigger low stock alert *****TODO*****
+                new LowStockAlert(this).SendAlert();
             }
         }
-
-        
     }
 }
