@@ -8,44 +8,46 @@ namespace BunningsInventoryManagementSystem.Models
 {
     internal class Item
     {
+        private static int nextItemID = 1;
         public int ItemID { get; set; }
         public string Name { get; set; }
-        public double price { get; set; }
-        public int stockLevel { get; set; }
-        public int lowStockThreshold { get; set; }
-        public bool location { get; set; }
+        public double Price { get; set; }
+        public int StockLevel { get; set; }
+        public int LowStockThreshold { get; set; }
+        public bool Location { get; set; }
 
+        // Contructor
+        public Item(string name, double price, int stockLevel, int lowStockThreshold, bool location)
+        {
+            ItemID = nextItemID++;
+            Name = name;
+            Price = price;
+            StockLevel = stockLevel;
+            LowStockThreshold = lowStockThreshold;
+            Location = location;
+        }
 
         // Add amount of stock to the current stock level
         public void UpdateStockLevel(int amount)
         {
-            stockLevel += amount;
+            StockLevel += amount;
         }
 
         // update items location, true for warehouse, false for retail
         public void UpdateLocation(bool newLocation)
         {
-            location = newLocation;
+            Location = newLocation;
         }
 
         // Check if the stock level is below the low stock threshold and trigger an alert
         public void CheckLowStock()
         {
-            if (stockLevel <= lowStockThreshold)
+            if (StockLevel <= LowStockThreshold)
             {
                 // Trigger low stock alert *****TODO*****
             }
         }
 
-        // Add a new item to the inventory
-        public void AddNewItem(int itemID, string name, double price, int stockLevel, int lowStockThreshold, bool location)
-        {
-            ItemID = itemID;
-            Name = name;
-            this.price = price;
-            this.stockLevel = stockLevel;
-            this.lowStockThreshold = lowStockThreshold;
-            this.location = location;
-        }
+        
     }
 }

@@ -20,24 +20,34 @@ namespace BunningsInventoryManagementSystem.Models
             item.UpdateLocation(newLocation);
         }
 
+        // Warehouse staff can generate order requests
         public void GenerateOrderRequest(Item item, int amount)
         {
-            // Generate order request *****TODO*****
+            OrderRequest newRequest = new OrderRequest(item, amount);
         }
 
-        public void ViewOrderStatus(int requestID)
+        // Warehouse staff can view order request status
+        public Status ViewOrderStatus(System system, int requestID)
         {
-            // View order status *****TODO*****
+            foreach (OrderRequest request in system.orderRequests) // Find the order request with the given ID
+            {
+                if (request.RequestID == requestID)
+                {
+                    return request.Status;
+                }
+            }
+
+            throw new Exception("Order request not found.");
         }
 
         // Warehouse staff can view stock levels and item locations
         public int ViewStockLevel(Item item)
         {
-            return item.stockLevel;
+            return item.StockLevel;
         }
         public bool ViewItemLocation(Item item)
         {
-            return item.location;
+            return item.Location;
         }
     }
 }

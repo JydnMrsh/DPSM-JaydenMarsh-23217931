@@ -22,8 +22,7 @@ namespace BunningsInventoryManagementSystem.Models
                 case Role.StoreManager:
                     return new StoreManager { UserName = username, Password = password, UserRole = role };
                 default:
-                    Console.WriteLine("Invalid role.");
-                    return null;
+                    throw new Exception("Invalid role.");
             }
         }
 

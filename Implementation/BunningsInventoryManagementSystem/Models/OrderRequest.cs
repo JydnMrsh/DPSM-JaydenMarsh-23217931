@@ -15,14 +15,17 @@ namespace BunningsInventoryManagementSystem.Models
 
     internal class OrderRequest
     {
-        public int RequestID { get; set; }
-        public Status Status { get; set; }
+        private static int nextRequestID = 1;
+        public int RequestID { get; private set; }
+        public Status Status { get; private set; }
         public Item RequestedItem { get; set; }
         public int Amount { get; set; }
 
-
-        public OrderRequest()
+        public OrderRequest(Item item, int amount)
         {
+            RequestID = nextRequestID++;
+            RequestedItem = item;
+            Amount = amount;
             Status = Status.Pending; // Default status is pending
         }
 
