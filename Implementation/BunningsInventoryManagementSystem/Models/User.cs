@@ -17,11 +17,19 @@ namespace BunningsInventoryManagementSystem.Models
 
     internal abstract class User
     {
+        private static int nextUserID = 1;
         public int UserID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public Role UserRole { get; set; }
 
+        public User(string username, string password, Role role)
+        {
+            UserID = nextUserID++;
+            UserName = username;
+            Password = password;
+            UserRole = role;
+        }
 
         public bool Login(string username, string password)
         {

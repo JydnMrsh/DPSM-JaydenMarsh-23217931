@@ -15,11 +15,16 @@ namespace BunningsInventoryManagementSystem.Models
 
         public void Demo()
         {
+            ITStaff itStaff1 = new ITStaff("admin", "password123", Role.ITStaff); // Create an IT staff user
+
+            itStaff1.CreateUser("warehouse1", "warehousePassword1", Role.WarehouseStaff); // ITStaff can create a warehouse staff user
+            itStaff1.CreateUser("retail1", "retailPassword1", Role.RetailStaff); // ITStaff can create a retail staff user
+            itStaff1.CreateUser("manager1", "managerPassword1", Role.StoreManager); // ITStaff can create a store manager user
+
             AddItem("Chocolate", 5, 100, 20); // Add an item to inventory
             AddItem("Cereal", 10, 50, 10);
             AddItem("Milk", 3, 30, 5);
             AddOrderRequest(GetItem(1), 50); // Add an order request for the item
-
         }
 
         // Add a new item to the inventory

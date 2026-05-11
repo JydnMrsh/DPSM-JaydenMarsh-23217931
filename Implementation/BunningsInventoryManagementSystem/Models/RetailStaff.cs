@@ -8,6 +8,11 @@ namespace BunningsInventoryManagementSystem.Models
 {
     internal class RetailStaff : User
     {
+        public RetailStaff(string username, string password, Role role) : base(username, password, role)
+        {
+        }
+
+
         // Retail staff can update stock levels
         public void UpdateStockLevel(Item item, int amount)
         {
@@ -27,7 +32,7 @@ namespace BunningsInventoryManagementSystem.Models
         }
         public bool ViewItemLocation(Item item)
         {
-            return item.Location;
+            return item.InWarehouse;
         }
     }
 }

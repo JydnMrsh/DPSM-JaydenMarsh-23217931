@@ -8,6 +8,11 @@ namespace BunningsInventoryManagementSystem.Models
 {
     internal class StoreManager : User
     {
+        public StoreManager(string username, string password, Role role) : base(username, password, role)
+        {
+        }
+
+
         // Store manager can approve or reject order requests
         public void AprroveOrderRequest(int requestID)
         {
@@ -27,7 +32,7 @@ namespace BunningsInventoryManagementSystem.Models
         }
         public bool ViewItemLocation(Item item)
         {
-            return item.Location;
+            return item.InWarehouse;
         }
     }
 }
