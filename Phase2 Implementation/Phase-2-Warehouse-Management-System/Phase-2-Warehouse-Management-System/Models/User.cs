@@ -33,10 +33,53 @@ namespace Phase_2_Warehouse_Management_System
         }
     }
 
-    // WAREHOUSE CLASS
+    // WAREHOUSESTAFF CLASS
     public class WarehouseStaff : User, IStockUpdater, IStockViewer, ILocationViewer
     {
-        public WarehouseStaff(int id, string username, string password)
-            : base(id, username, password, UserRole.WarehouseStaff) { }
+        // Same as base user class
+        public WarehouseStaff(int id, string username, string password) : base(id, username, password, UserRole.WarehouseStaff) { }
+    }
+
+    // RETAILSTAFF CLASS
+    public class RetailStaff : User, IStockUpdater, IStockViewer, ILocationViewer
+    {
+        // Same as base user class
+        public RetailStaff(int id, string username, string password) : base(id, username, password, UserRole.RetailStaff) { }
+    }
+
+    public class StoreManager : User, IStockViewer, ILocationViewer, IOrderApprover
+    {
+        // Same as base user class
+        public StoreManager(int id, string username, string password) : base(id, username, password, UserRole.StoreManager) { }
+    }
+
+    // ITSTAFF CLASS
+    public class ITStaff : User
+    {
+        public ITStaff(int id, string username, string password) : base(id, username, password, UserRole.ITStaff) { }
+
+        // Create new user account
+        public void CreateUser()
+        {
+            Console.WriteLine("  [IT] Creating new user account.");
+        }
+
+        // Change role of existing user account
+        public void ManageUserPermission(User user, UserRole newRole)
+        {
+            Console.WriteLine("  [IT] Updating " + user.Username + "'s role to " + newRole + ".");
+        }
+    }
+
+    // CUSTOMER
+    public class Customer : User
+    {
+        public Customer(int id, string username, string password) : base(id, username, password, UserRole.Customer) { }
+
+        // Simulate checking availability from Bunnings Warehouse website
+        public void CheckAvailability(Item item)
+        {
+            Console.WriteLine("  [Website] '" + item.Name + "' - Total stock: " + item.TotalStock);
+        }
     }
 }
