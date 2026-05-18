@@ -22,7 +22,7 @@ namespace Phase_2_Warehouse_Management_System.Models
         // Return total stock between both the warehouse and retail departments.
         public int TotalStock { get { return WarehouseStock + RetailStock; } }
 
-        public Item(int itemId, string name, double price, int warehouseStock, int retailStock, int lowStockThreshold)
+        public Item(int itemId, string name, double price, int warehouseStock, int retailStock, int lowStockThreshold = 5) // Default threshold is 5
         {
             ItemId = itemId;
             Name = name;
