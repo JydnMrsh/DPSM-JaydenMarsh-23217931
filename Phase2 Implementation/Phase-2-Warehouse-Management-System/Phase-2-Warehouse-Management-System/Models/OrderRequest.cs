@@ -28,5 +28,12 @@ namespace Phase_2_Warehouse_Management_System.Models
             Status = OrderStatus.Pending;
             RequestedBy = requestedBy;
         }
+
+        // Update order status
+        public void UpdateStatus(OrderStatus newStatus)
+        {
+            Status = newStatus;
+            Console.WriteLine("  [Order #" + RequestId + "] Status updated to: " + newStatus);
+        }
     }
 }

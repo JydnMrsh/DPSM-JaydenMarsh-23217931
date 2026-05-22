@@ -110,12 +110,39 @@ namespace Phase_2_Warehouse_Management_System.DesignPatterns
 
 
 
+    // Subsystem 3: ALERTSERVICE
+    public class AlertService
+    {
+        // Check if low stock and alert if needed
+        public void CheckAndAlert(Item item)
+        {
+            if (item.IsLowStock())
+                Console.WriteLine("  [LOW STOCK ALERT] '" + item.Name + "' has only " + item.TotalStock + " units (threshold: " + item.LowStockThreshold + ")");
+        }
+
+        // Check all items for low stock, and alert if needed
+        public void CheckAll(IEnumerable<Item> items)
+        {
+            foreach (var item in items) CheckAndAlert(item);
+        }
+    }
+
+
+
     // Facade: INVENTORYSERVICE, single entry point
     public class InventoryService
     {
         private InventoryStorage _storage = new InventoryStorage();
         private StockService _stockService = new StockService();
+        private AlertService _alertService = new AlertService();
+        private OrderNotifier _orderNotifier;
         private int _nextOrderId = 1;
+
+        // Constructor
+        public InventoryService(OrderNotifier orderNotifier)
+        {
+            _orderNotifier = orderNotifier;
+        }
 
         public Item AddItem(string name, double price, int warehouseStock, int retailStock, int lowStockThreshold = 5) // Default threshold is 5
         {
@@ -169,6 +196,7 @@ namespace Phase_2_Warehouse_Management_System.DesignPatterns
             // Update warehouse stock otherwise retail
             if (isWarehouse) _stockService.UpdateWarehouseStock(item, change);
             else _stockService.UpdateRetailStock(item, change);
+            _alertService.CheckAndAlert(item); // Check item stock level after updates
         }
         
         // Transfer stock to retail
@@ -179,6 +207,7 @@ namespace Phase_2_Warehouse_Management_System.DesignPatterns
 
             // Use stock service to transfer
             _stockService.TransferToRetail(item, quantity);
+            _alertService.CheckAndAlert(item); // Check item stock level after updates
         }
 
         // Transfer stock to warehouse
@@ -189,6 +218,7 @@ namespace Phase_2_Warehouse_Management_System.DesignPatterns
 
             // Use stock service to transfer
             _stockService.TransferToWarehouse(item, quantity);
+            _alertService.CheckAndAlert(item); // Check item stock level after updates
         }
 
 
@@ -202,6 +232,13 @@ namespace Phase_2_Warehouse_Management_System.DesignPatterns
             var order = new OrderRequest(_nextOrderId++, itemId, item.Name, quantity, staff.Username);
             Console.WriteLine("\n  [Order] " + staff.Username + " generated order request: " + order);
             return order;
+        }
+
+        // Check all items for low stock
+        public void RunStockAlertCheck()
+        {
+            Console.WriteLine("\n  --- Running Stock Alert Check ---");
+            _alertService.CheckAll(_storage.GetAll());
         }
     }
 }
