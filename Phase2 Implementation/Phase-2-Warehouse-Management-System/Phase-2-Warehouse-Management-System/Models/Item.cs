@@ -37,6 +37,9 @@ namespace Phase_2_Warehouse_Management_System.Models
             else
                 Location = ItemLocation.Retail;
         }
+
+        // Check if item's stock is less than the threshold
+        public bool IsLowStock() { return TotalStock < LowStockThreshold; }
     }
 }
 

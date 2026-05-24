@@ -8,7 +8,7 @@ using Phase_2_Warehouse_Management_System.Models; // Access Models
 namespace Phase_2_Warehouse_Management_System.DesignPatterns
 {
     /* ObserverPattern.cs
-    DESIGN PATTERN 1: Observer
+    DESIGN PATTERN: Observer
     
     Phase 1 weakness addressed:
     OrderRequest has no way to tell who to send it to.
