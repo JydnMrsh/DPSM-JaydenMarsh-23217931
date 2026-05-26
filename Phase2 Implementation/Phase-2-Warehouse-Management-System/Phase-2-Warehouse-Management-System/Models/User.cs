@@ -31,6 +31,9 @@ namespace Phase_2_Warehouse_Management_System
         {
             return Username == username && Password == password;
         }
+
+        // To string override
+        public override string ToString() { return "[" + Role + "] " + Username; }
     }
 
     // WAREHOUSESTAFF CLASS

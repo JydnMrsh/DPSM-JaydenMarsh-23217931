@@ -40,6 +40,14 @@ namespace Phase_2_Warehouse_Management_System.Models
 
         // Check if item's stock is less than the threshold
         public bool IsLowStock() { return TotalStock < LowStockThreshold; }
+
+        // To string overide
+        public override string ToString()
+        {
+            return "[" + ItemId + "] " + Name + " | Warehouse: " + WarehouseStock +
+                   " | Retail: " + RetailStock + " | Location: " + Location +
+                   " | $" + Price.ToString("F2");
+        }
     }
 }
 

@@ -35,5 +35,13 @@ namespace Phase_2_Warehouse_Management_System.Models
             Status = newStatus;
             Console.WriteLine("  [Order #" + RequestId + "] Status updated to: " + newStatus);
         }
+
+        // To string override
+        public override string ToString()
+        {
+            return "Order #" + RequestId + " | Item: " + ItemName +
+                   " | Qty: " + Quantity + " | Status: " + Status +
+                   " | By: " + RequestedBy;
+        }
     }
 }

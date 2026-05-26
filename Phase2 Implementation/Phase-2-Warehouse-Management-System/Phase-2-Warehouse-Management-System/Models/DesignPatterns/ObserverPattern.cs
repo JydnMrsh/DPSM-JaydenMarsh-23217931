@@ -113,5 +113,9 @@ namespace Phase_2_Warehouse_Management_System.DesignPatterns
             // Display all pending orders
             foreach (var o in _pendingOrders) Console.WriteLine("    " + o);
         }
+
+
+        // To string override
+        public override string ToString() { return _manager.Username; }
     }
 }
