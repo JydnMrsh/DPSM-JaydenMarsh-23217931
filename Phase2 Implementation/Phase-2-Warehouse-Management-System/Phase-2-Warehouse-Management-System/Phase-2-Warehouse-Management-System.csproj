@@ -14,6 +14,8 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <OutputType>WinExe</OutputType>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -55,6 +57,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppState.cs" />
+    <Compile Include="Dashboardwindow.xaml.cs">
+      <DependentUpon>Dashboardwindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Loginwindow.xaml.cs">
+      <DependentUpon>Loginwindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\DesignPatterns\FacadePattern.cs" />
     <Compile Include="Models\DesignPatterns\ObserverPattern.cs" />
     <Compile Include="Models\DesignPatterns\StrategyPattern.cs" />
@@ -62,6 +71,14 @@
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\OrderRequest.cs" />
     <Compile Include="Models\User.cs" />
+    <Page Include="Dashboardwindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Loginwindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

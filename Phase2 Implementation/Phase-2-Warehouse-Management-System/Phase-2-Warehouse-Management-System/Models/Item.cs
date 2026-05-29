@@ -7,7 +7,7 @@ using Phase_2_Warehouse_Management_System.Models; // Access models
 
 namespace Phase_2_Warehouse_Management_System.Models
 {
-    public enum ItemLocation { Warehouse, Retail} // Different possible item locations
+    public enum ItemLocation { Warehouse, Retail, Both} // Different possible item locations
 
     public class Item
     {
@@ -31,8 +31,10 @@ namespace Phase_2_Warehouse_Management_System.Models
             RetailStock = retailStock;
             LowStockThreshold = lowStockThreshold;
 
-            // If warehouse doesn't have any stock of item then retail must have it.
-            if (warehouseStock > 0)
+            // Check where items are located
+            if (warehouseStock > 0 && retailStock > 0)
+                Location = ItemLocation.Both;
+            else if (warehouseStock > 0)
                 Location = ItemLocation.Warehouse;
             else
                 Location = ItemLocation.Retail;

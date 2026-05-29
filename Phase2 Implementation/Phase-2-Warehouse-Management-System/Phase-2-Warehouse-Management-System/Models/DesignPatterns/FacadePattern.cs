@@ -101,7 +101,10 @@ namespace Phase_2_Warehouse_Management_System.DesignPatterns
         // If item exists in warehouse change location to warehouse, otherwise retail
         private void UpdateLocation(Item item)
         {
-            if (item.WarehouseStock > 0)
+            // Check where items are located and update location
+            if (item.WarehouseStock > 0 && item.RetailStock > 0)
+                item.Location = ItemLocation.Both;
+            else if (item.WarehouseStock > 0)
                 item.Location = ItemLocation.Warehouse;
             else
                 item.Location = ItemLocation.Retail;
@@ -154,6 +157,9 @@ namespace Phase_2_Warehouse_Management_System.DesignPatterns
 
         // Get item using storage's GetItem
         public Item GetItem(int itemId) { return _storage.GetItem(itemId); }
+
+        // Get all items using storage's get all
+        public IEnumerable<Item> GetAllItems() { return _storage.GetAll(); }
 
         // View all stock in storage
         public void ViewAllStock(User requester)

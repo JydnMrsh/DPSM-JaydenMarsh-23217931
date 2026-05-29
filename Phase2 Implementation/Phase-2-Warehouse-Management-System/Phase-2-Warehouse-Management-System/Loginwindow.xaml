@@ -1,0 +1,84 @@
+﻿<Window x:Class="Phase_2_Warehouse_Management_System.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Bunnings IMS — Login"
+        Height="620" Width="420"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F7FA">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="180"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header banner -->
+        <Border Grid.Row="0" Background="#FF1C5361">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="BUNNINGS"
+                           FontFamily="Segoe UI" FontSize="20" FontWeight="Bold"
+                           Foreground="#FFCA4A00" HorizontalAlignment="Center"/>
+                <TextBlock Text="Inventory Management System"
+                           FontFamily="Segoe UI" FontSize="12"
+                           Foreground="White" HorizontalAlignment="Center"
+                           Margin="0,4,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Login card -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Border Grid.Row="1" Style="{StaticResource Card}"
+                        Margin="30,24,30,30" VerticalAlignment="Top">
+                <StackPanel>
+
+                    <TextBlock Text="Log In" Style="{StaticResource SectionHeader}"
+                                   FontSize="18" Margin="0,0,0,20"/>
+
+                    <!-- Username -->
+                    <TextBlock Text="USERNAME" Style="{StaticResource FormLabel}"/>
+                    <TextBox x:Name="TxtUsername" Style="{StaticResource TextInput}"
+                                 Margin="0,0,0,14"
+                                 KeyDown="Input_KeyDown"/>
+
+                    <!-- Password -->
+                    <TextBlock Text="PASSWORD" Style="{StaticResource FormLabel}"/>
+                    <PasswordBox x:Name="TxtPassword" Style="{StaticResource PasswordInput}"
+                                     Margin="0,0,0,20"
+                                     KeyDown="Input_KeyDown"/>
+
+                    <!-- Error message -->
+                    <TextBlock x:Name="TxtError"
+                                   FontFamily="Segoe UI" FontSize="12"
+                                   Foreground="#C0392B" Margin="0,0,0,12"
+                                   Visibility="Collapsed" TextWrapping="Wrap"/>
+
+                    <!-- Login button -->
+                    <Button Content="LOGIN" Style="{StaticResource PrimaryButton}"
+                                Height="40" Click="BtnLogin_Click"/>
+
+                    <!-- Demo credentials hint -->
+                    <Expander Header="Demo credentials" Margin="0,16,0,0"
+                                  FontFamily="Segoe UI" FontSize="11" Foreground="Black" Background="White">
+                        <Border Background="#FFE4E4E4" CornerRadius="0" Padding="10,8" Margin="0,6,0,0">
+                            <StackPanel>
+                                <TextBlock FontFamily="Consolas" FontSize="11" Foreground="#FF020202"
+                                               Text="dave_w / pass123  (Warehouse)"  Margin="0,1"/>
+                                <TextBlock FontFamily="Consolas" FontSize="11" Foreground="#FF020202"
+                                               Text="sarah_r / pass456  (Retail)"     Margin="0,1"/>
+                                <TextBlock FontFamily="Consolas" FontSize="11" Foreground="#FF020202"
+                                               Text="mgr_jane / mgr789   (Manager)"    Margin="0,1"/>
+                                <TextBlock FontFamily="Consolas" FontSize="11" Foreground="#FF020202"
+                                               Text="mgr_tom / mgr000   (Manager)"    Margin="0,1"/>
+                                <TextBlock FontFamily="Consolas" FontSize="11" Foreground="#FF020202"
+                                               Text="it_admin / admin999 (IT Staff)"   Margin="0,1"/>
+                            </StackPanel>
+                        </Border>
+                    </Expander>
+
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+    </Grid>
+</Window>
+

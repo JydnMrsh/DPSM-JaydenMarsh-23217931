@@ -103,6 +103,8 @@ namespace Phase_2_Warehouse_Management_System.DesignPatterns
             _pendingOrders.Remove(order);
         }
 
+        // Get all pending orders
+        public IEnumerable<OrderRequest> GetPendingOrders() { return _pendingOrders; }
 
         // View pending orders
         public void ViewPendingOrders()
