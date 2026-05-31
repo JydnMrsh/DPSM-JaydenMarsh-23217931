@@ -58,8 +58,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppState.cs" />
+    <Compile Include="ConsoleDemo.cs" />
     <Compile Include="Dashboardwindow.xaml.cs">
       <DependentUpon>Dashboardwindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LauncherWindow.xaml.cs">
+      <DependentUpon>LauncherWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Loginwindow.xaml.cs">
       <DependentUpon>Loginwindow.xaml</DependentUpon>
@@ -72,6 +76,10 @@
     <Compile Include="Models\OrderRequest.cs" />
     <Compile Include="Models\User.cs" />
     <Page Include="Dashboardwindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LauncherWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

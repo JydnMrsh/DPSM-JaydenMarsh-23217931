@@ -160,25 +160,31 @@ namespace Phase_2_Warehouse_Management_System
 
         private void BtnUpdateStock_Click(object sender, RoutedEventArgs e)
         {
+            if (!(_state.CurrentUser is IStockUpdater updater))
+            {
+                SetResult(TxtUpdateResult, "Access denied.", false);
+                return;
+            }
             if (!(CboUpdateItem.SelectedItem is Item item)) return;
+
             if (!int.TryParse(TxtUpdateQty.Text, out int qty))
             {
                 SetResult(TxtUpdateResult, "Invalid quantity.", false);
                 return;
             }
             bool isWarehouse = (CboUpdateLocation.SelectedIndex == 0);
-            _state.Inventory.UpdateStock(
-                (IStockUpdater)_state.CurrentUser,
-                _state.CurrentUser,
-                item.ItemId, qty, isWarehouse);
+            _state.Inventory.UpdateStock(updater, _state.CurrentUser, item.ItemId, qty, isWarehouse);
             RefreshStock();
-            SetResult(TxtUpdateResult,
-                "Updated '" + item.Name + "' " +
-                (isWarehouse ? "warehouse" : "retail") + " stock by " + qty + ".", true);
+            SetResult(TxtUpdateResult, "Updated '" + item.Name + "' stock by " + qty + ".", true);
         }
 
         private void BtnTransfer_Click(object sender, RoutedEventArgs e)
         {
+            if (!(_state.CurrentUser is IStockUpdater updater))
+            {
+                SetResult(TxtTransferResult, "Access denied.", false);
+                return;
+            }
             if (!(CboTransferItem.SelectedItem is Item item)) return;
             if (!int.TryParse(TxtTransferQty.Text, out int qty) || qty <= 0)
             {
@@ -187,14 +193,11 @@ namespace Phase_2_Warehouse_Management_System
             }
             bool toRetail = (CboTransferDirection.SelectedIndex == 0);
             if (toRetail)
-                _state.Inventory.TransferToRetail(
-                    (IStockUpdater)_state.CurrentUser, _state.CurrentUser, item.ItemId, qty);
+                _state.Inventory.TransferToRetail(updater, _state.CurrentUser, item.ItemId, qty);
             else
-                _state.Inventory.TransferToWarehouse(
-                    (IStockUpdater)_state.CurrentUser, _state.CurrentUser, item.ItemId, qty);
+                _state.Inventory.TransferToWarehouse(updater, _state.CurrentUser, item.ItemId, qty);
             RefreshStock();
-            SetResult(TxtTransferResult,
-                "Transferred " + qty + "x '" + item.Name + "' " +
+            SetResult(TxtTransferResult, "Transferred " + qty + "x '" + item.Name + "' " +
                 (toRetail ? "to Retail" : "to Warehouse") + ".", true);
         }
 

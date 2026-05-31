@@ -37,7 +37,7 @@ namespace Phase_2_Warehouse_Management_System
             TxtError.Visibility = Visibility.Collapsed;
 
             var username = TxtUsername.Text.Trim();
-            var password = TxtPassword.Password;
+            var password = TxtPassword.Text;
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
